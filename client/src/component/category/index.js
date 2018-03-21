@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../actions/category';
-import AppBar from 'material-ui/AppBar';
+import CategoryList from './CategoryList';
 
 class Category extends Component {
     componentDidMount() {
@@ -9,8 +9,10 @@ class Category extends Component {
     }
 
     render() {
+        const { category } = this.props;
+
         return (
-            <AppBar title="category" />
+            <CategoryList categories={category} />
         )
     }
 }
