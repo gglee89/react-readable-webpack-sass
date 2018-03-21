@@ -12,7 +12,8 @@ module.exports = {
         './src/index.js'
     ],
     output: {
-        filename: 'bundle.[hash].js'
+        filename: 'bundle.[hash].js',
+        publicPath: '/',
     },
     module: {
         rules: [
