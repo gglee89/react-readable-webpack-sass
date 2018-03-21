@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Main from './component/main'
 import Category from './component/category'
 import NotFound from './component/notFound'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 class App extends Component {
     render() {
         return (
-            <div>
-                <Switch>
-                    <Route exact path="/" component={Main} />
-                    <Route exact path="/categories" component={Category} />
-                    <Route component={NotFound} />
-                </Switch>
-            </div>
+            <Router>
+                <MuiThemeProvider>
+                    <Switch>
+                        <Route exact path="/" component={Main} />
+                        <Route exact path="/categories" component={Category} />
+                        <Route component={NotFound} />
+                    </Switch>
+                </MuiThemeProvider>
+            </Router>
         );
     }
 }
