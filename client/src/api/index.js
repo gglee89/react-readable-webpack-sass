@@ -1,10 +1,15 @@
 const urlPath = "http://localhost:3001/"
 
-export default async (url) => {
+export default async (url, options = {}) => {
+    console.log("options", options)
     let response = await fetch(
         urlPath + url,
         {
-            headers: { 'Authorization': 'reactnd-gustavo-lee' }
+            headers: new Headers({
+                'Authorization': 'reactnd-gustavo-lee',
+                'Content-Type': 'application/json'
+            }),
+            ...options
         }
     );
 

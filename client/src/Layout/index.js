@@ -11,27 +11,29 @@ import Comment from '../pages/comment'
 
 import { Container, Divider, Header, Icon } from 'semantic-ui-react';
 
-import { pullRight, h1 } from './layout.css';
+import { navMenu, pullRight, h1 } from './layout.css';
 
 class Layout extends Component {
     render() {
         return (
             <Container>
-                <Link to="/">
-                    <Header as="h1" className={h1}>
-                        React ND
-                    </Header>
-                </Link>
-                <Link to="/categories">
-                    <Header as="h1" className={h1}>
-                        All Categories
-                    </Header>
-                </Link>
-                <Link to="/posts">
-                    <Header as="h1" className={h1}>
-                        All Posts
-                    </Header>
-                </Link>
+                <div className={navMenu}>
+                    <Link to="/">
+                        <Header as="h1" className={h1}>
+                            React ND
+                        </Header>
+                    </Link>
+                    <Link to="/categories">
+                        <Header as="h1" className={h1}>
+                            All Categories
+                        </Header>
+                    </Link>
+                    <Link to="/posts">
+                        <Header as="h1" className={h1}>
+                            All Posts
+                        </Header>
+                    </Link>
+                </div>
                 <Divider />
                 <Switch>
                     <Route exact path="/" component={Index} />

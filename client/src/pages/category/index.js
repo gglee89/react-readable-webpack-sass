@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchCategories } from '../../actions/category'
+import { fetchCategories } from '../../actions/categories'
 
 import { Header, Icon, List } from 'semantic-ui-react'
 
@@ -11,7 +11,7 @@ class Category extends Component {
     }
 
     render() {
-        const { category } = this.props;
+        const { categories } = this.props;
 
         return (
             <div>
@@ -23,14 +23,14 @@ class Category extends Component {
                 </Header>
                 <List selection verticalAlign='middle'>
                     {
-                        category && category.length > 0 && category.map((category_item, key) => {
+                        categories && categories.length > 0 && categories.map((category, key) => {
                             return (
                                 <List.Item key={key}>
-                                    <Link to={`${category_item.path}/posts`}>
+                                    <Link to={`${category.path}/posts`}>
                                         <List.Icon name="setting" size="large" verticalAlign='middle' />
                                     </Link>
                                     <List.Content>
-                                        <List.Header>{category_item.name}</List.Header>
+                                        <List.Header>{category.name}</List.Header>
                                     </List.Content>
                                 </List.Item>
                             )
@@ -44,7 +44,7 @@ class Category extends Component {
 
 const mapStateToProps = state => {
     return {
-        category: state.category
+        categories: state.categories
     }
 }
 

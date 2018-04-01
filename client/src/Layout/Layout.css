@@ -1,3 +1,17 @@
+.nav-menu {
+    align-self: center;
+    display: flex;
+}
+
+.nav-menu > a {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-menu > a:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
 .pull-right {
     display: flex;
     justify-content: flex-end;
