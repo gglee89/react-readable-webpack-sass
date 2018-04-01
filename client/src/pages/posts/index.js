@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Header, Icon, List } from 'semantic-ui-react'
+import { Header, Icon, List, Dropdown } from 'semantic-ui-react'
 import { fetchPosts } from '../../actions/posts'
 
 class Posts extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            sortKey: 'timestamp'
+        }
+
+        this.onSortChange = this.onSortChange.bind(this)
+    }
 
     componentDidMount() {
         const { category } = this.props.match.params
@@ -12,8 +20,28 @@ class Posts extends Component {
         fetchPosts(category);
     }
 
+    onSortChange(e, data) {
+        this.setState({
+            sortKey: data.value
+        })
+    }
+
     render() {
-        const { posts } = this.props;
+        const { posts } = this.props
+        const { sortKey } = this.state
+
+        const sortOptions = [
+            { key: 'timestamp', value: 'timestamp', text: 'Creation Date' },
+            { key: 'voteScore', value: 'voteScore', text: 'Vote Score' },
+        ]
+
+        const customSort = (a, b) => {
+            const { sortKey } = this.state;
+            return a[sortKey] > b[sortKey] ? 1 : a[sortKey] < b[sortKey] ? -1 : 0
+        }
+
+        console.log("sortKey", this.state.sortKey)
+        console.log("posts", posts)
 
         return (
             <div>
@@ -23,9 +51,10 @@ class Posts extends Component {
                         All Posts
                     </Header.Content>
                 </Header>
+                <Dropdown defaultValue={sortKey} search selection options={sortOptions} onChange={this.onSortChange} />
                 <List selection verticalAlign='middle'>
                     {
-                        posts && posts.length > 0 && posts.map((post, key) => {
+                        posts && posts.length > 0 && posts.sort(customSort).map((post, key) => {
                             let date = (new Date(post.timestamp));
                             return (
                                 <List.Item key={key}>
@@ -35,6 +64,7 @@ class Posts extends Component {
                                         </Link>
                                         <List.Description>{post.body}</List.Description>
                                         <List.Description>{post.author} - {date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()}</List.Description>
+                                        <List.Description>Vote Score: {post.voteScore}</List.Description>
                                     </List.Content>
                                 </List.Item>
                             )
