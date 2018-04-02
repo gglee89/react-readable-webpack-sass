@@ -21,8 +21,6 @@ class Post extends Component {
 
         let date = (new Date(post.timestamp));
 
-        console.log("post", post)
-
         return (
             <div>
                 <Header as='h2' icon textAlign='center'>

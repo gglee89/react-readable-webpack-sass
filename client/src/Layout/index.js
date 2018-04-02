@@ -6,6 +6,7 @@ import Category from '../pages/category'
 import NotFound from '../pages/notFound'
 import Posts from '../pages/posts'
 import Post from '../pages/post'
+import PostNew from '../pages/post/new'
 import Comments from '../pages/comments'
 import Comment from '../pages/comment'
 
@@ -39,6 +40,7 @@ class Layout extends Component {
                     <Route exact path="/" component={Index} />
                     <Route exact path="/categories" component={Category} />
                     <Route exact path="/:category/posts" component={Posts} />
+                    <Route exact path="/post/new" component={PostNew} />
                     <Route exact path="/posts" component={Posts} />
                     <Route exact path="/posts/:id" component={Post} />
                     <Route exact path="/posts/:id/comments" component={Comments} />

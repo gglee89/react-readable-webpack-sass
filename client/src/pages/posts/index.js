@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Header, Icon, List, Dropdown } from 'semantic-ui-react'
+import { Header, Icon, List, Button, Dropdown } from 'semantic-ui-react'
 import { fetchPosts } from '../../actions/posts'
+import { listHeader, sort, sortLabel } from './Posts.css'
 
 class Posts extends Component {
     constructor(props) {
@@ -40,9 +41,6 @@ class Posts extends Component {
             return a[sortKey] > b[sortKey] ? 1 : a[sortKey] < b[sortKey] ? -1 : 0
         }
 
-        console.log("sortKey", this.state.sortKey)
-        console.log("posts", posts)
-
         return (
             <div>
                 <Header as='h2' icon textAlign='center'>
@@ -51,7 +49,15 @@ class Posts extends Component {
                         All Posts
                     </Header.Content>
                 </Header>
-                <Dropdown defaultValue={sortKey} search selection options={sortOptions} onChange={this.onSortChange} />
+                <div className={listHeader}>
+                    <div className={sort}>
+                        <div className={sortLabel}>Sorted Ascendently By:</div>
+                        <Dropdown defaultValue={sortKey} search selection options={sortOptions} onChange={this.onSortChange} />
+                    </div>
+                    <Link to='/post/new'>
+                        <Button content='Add new post' primary />
+                    </Link>
+                </div>
                 <List selection verticalAlign='middle'>
                     {
                         posts && posts.length > 0 && posts.sort(customSort).map((post, key) => {

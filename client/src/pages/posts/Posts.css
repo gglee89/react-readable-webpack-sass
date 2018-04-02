@@ -1,0 +1,12 @@
+.sort {
+    display: flex;
+}
+
+.sortLabel {
+    align-self: center;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+}

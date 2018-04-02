@@ -1,7 +1,6 @@
 const urlPath = "http://localhost:3001/"
 
 export default async (url, options = {}) => {
-    console.log("options", options)
     let response = await fetch(
         urlPath + url,
         {
